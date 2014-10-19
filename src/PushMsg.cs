@@ -34,6 +34,11 @@ public class PushMsg : MonoBehaviour
 		}
 	}
 
+	void OnDestroy()
+	{
+		s_cInstance = null;
+	}
+
 	/// <summary>
 	/// Init this instance.
 	/// </summary>
@@ -50,6 +55,13 @@ public class PushMsg : MonoBehaviour
 			StartCoroutine("RegistRemote");
 			PlayerPrefs.SetString(TOKEN_KEY , "" + DateTime.Now.Ticks);
 		}
+	}
+
+	//clear the notifications
+	public void ClearNotifications()
+	{
+		NotificationServices.ClearLocalNotifications();
+		NotificationServices.ClearRemoteNotifications();
 	}
 
 	/// <summary>
